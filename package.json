@@ -1,6 +1,6 @@
 {
-  "name": "monk",
-  "version": "1.0.1",
+  "name": "monkii",
+  "version": "1.1.2",
   "main": "lib/monk.js",
   "tags": [
     "mongodb",
@@ -9,8 +9,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/LearnBoost/monk.git"
+    "url": "https://github.com/ratson/monkii.git"
   },
+  "homepage": "https://github.com/ratson/monkii",
   "dependencies": {
     "debug": "*",
     "mongodb": "^2.1",

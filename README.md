@@ -1,4 +1,11 @@
+# This is a fork of monk with mongoskin upgrade to v2.
+
+There is a [pending pull request](https://github.com/Automattic/monk/pull/119) waiting to review.
+
+For anyone can't wait, try it out by `npm install monkii`, please [report bugs](https://github.com/ratson/monkii/issues) if you encounter any.
+
 # monk
+
 
 [![build status](https://secure.travis-ci.org/Automattic/monk.png?branch=master)](https://secure.travis-ci.org/Automattic/monk)
 
