@@ -2,7 +2,7 @@
   "name": "monkii",
   "description": "A fork of monk with recent version of mongoskin",
   "keywords": ["monk", "database", "mongo", "mongodb", "mongoskin"],
-  "version": "1.1.3",
+  "version": "1.1.4",
   "main": "lib/monk.js",
   "tags": [
     "mongodb",
