@@ -16,14 +16,16 @@
   "homepage": "https://github.com/ratson/monkii",
   "dependencies": {
     "debug": "*",
-    "mongodb": "^2.1",
     "mongoskin": "~2.0.3",
     "mpromise": "0.5.5"
+  },
+  "peerDependencies": {
+    "mongodb": "^2.0"
   },
   "devDependencies": {
     "expect.js": "0.3.x",
     "mocha": "*",
-    "mongodb": "^2.1",
+    "mongodb": "^2.0",
     "promises-aplus-tests": "2.1.x"
   },
   "license": "MIT",
