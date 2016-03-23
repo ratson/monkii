@@ -140,3 +140,63 @@ describe('remove\'s return', function() {
 			});
 	});
 });
+
+describe('remove\'s error', function() {
+	it('should fail properly', function(done) {
+		users
+			.remove({
+				$or: 'ninja'
+			})
+			.then(null, function() {
+				done();
+			});
+	});
+});
+
+describe('aggregate\'s error', function() {
+	it('should fail properly', function(done) {
+		users
+			.aggregate()
+			.then(null, function() {
+				done();
+			});
+	});
+});
+
+describe('aggregate\'s normal flow', function() {
+	it('should word in normal case', function(done) {
+		users
+			.aggregate([{
+				$group: {
+					_id: null,
+					maxUnique: {
+						$max: '$unique'
+					}
+				}
+			}])
+			.then(function(ans) {
+				expect(ans).to.be.an('array');
+				expect(ans.length).to.be(1);
+				done();
+			});
+	});
+
+	it('should word with option', function(done) {
+		users
+			.aggregate([{
+				$group: {
+					_id: null,
+					maxUnique: {
+						$max: '$unique'
+					}
+				}
+			}], {
+				allowDiskUse: true
+			})
+			.then(function(ans) {
+				expect(ans).to.be.an('array');
+				expect(ans.length).to.be(1);
+				done();
+			});
+	});
+});
