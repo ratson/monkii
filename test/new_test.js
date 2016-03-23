@@ -9,7 +9,7 @@ users.index('unique', {
 /**
 	mimic collection.test.js
 */
-describe('insert error', function() {
+describe('insert\'s error', function() {
 	it('should handle single insert', function(done) {
 		users
 			.insert({
@@ -38,10 +38,10 @@ describe('insert error', function() {
 				unique: 3
 			}])
 			.then(function() {
-				console.log(arguments, 'success1');
+				//console.log(arguments, 'success1');
 				done('should\'t success');
 			}, function() {
-				console.log(arguments, 'fail1');
+				//console.log(arguments, 'fail1');
 				done();
 			});
 	});

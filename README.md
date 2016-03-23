@@ -19,3 +19,4 @@ If you encounter any problems, please [file an issue](https://github.com/ratson/
 ## Run new Test Case
 
 `node_modules/.bin/mocha test/new_test.js`
+`node_modules/.bin/mocha`
