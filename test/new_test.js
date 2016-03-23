@@ -115,3 +115,16 @@ describe('update\'s return', function() {
 			});
 	});
 });
+
+describe('update\'s error', function() {
+	it('should fail properly', function(done) {
+		users
+			.update({
+				unique: 9
+			}, {
+				$set: 'ninja'
+			}).catch(function(){
+				done();
+			});
+	});
+});
