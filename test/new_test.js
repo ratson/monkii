@@ -46,3 +46,72 @@ describe('insert\'s error', function() {
 			});
 	});
 });
+
+describe('update\'s return', function() {
+	it('should be 0 for zero modification', function(done) {
+		users
+			.update({
+				unique: 4
+			}, {
+				$set: {
+					unique: 4.5
+				}
+			})
+			.then(function(ans) {
+				expect(ans).to.be(0);
+				//console.log(arguments, 'success1');
+				done();
+			});
+	});
+	it('should be 1 for single modification', function(done) {
+		users
+			.insert({
+				unique: 5
+			})
+			.then(function() {
+				//console.log(arguments, 'success1');
+				return users.update({
+					unique: 5
+				}, {
+					$set: {
+						unique: 5.5
+					}
+				});
+			})
+			.then(function(ans) {
+				//console.log(arguments, 'success2');
+				expect(ans).to.be(1);
+				done();
+			});
+	});
+	it('should be n for multiple modification', function(done) {
+		users
+			.insert([{
+				unique: 6,
+				common: 'a'
+			}, {
+				unique: 7,
+				common: 'a'
+			}, {
+				unique: 8,
+				common: 'b'
+			}])
+			.then(function() {
+				//console.log(arguments, 'success1');
+				return users.update({
+					common: 'a'
+				}, {
+					$set: {
+						common: 'c'
+					}
+				}, {
+					multi: true
+				});
+			})
+			.then(function(ans) {
+				//console.log(arguments, 'success2');
+				expect(ans).to.be(2);
+				done();
+			});
+	});
+});
