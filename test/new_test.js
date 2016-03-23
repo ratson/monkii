@@ -112,3 +112,31 @@ describe('update\'s error', function() {
 			});
 	});
 });
+
+describe('remove\'s return', function() {
+	it('should be 0 for zero modification', function(done) {
+		users
+			.remove({
+				unique: 10
+			})
+			.then(function(ans) {
+				expect(ans).to.be(0);
+				done();
+			});
+	});
+	it('should be n otherwise', function(done) {
+		users
+			.insert({
+				unique: 10
+			})
+			.then(function() {
+				return users.remove({
+					unique: 10
+				});
+			})
+			.then(function(ans) {
+				expect(ans).to.be(1);
+				done();
+			});
+	});
+});
