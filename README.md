@@ -15,3 +15,7 @@ For documentation, please refer to [monk's README](https://github.com/Automattic
 ## Issues
 
 If you encounter any problems, please [file an issue](https://github.com/ratson/monkii/issues) along with a detailed description.
+
+## Run new Test Case
+
+`node_modules/.bin/mocha test/new_test.js`
