@@ -6,9 +6,6 @@ users.index('unique', {
 	unique: true
 });
 
-/**
-	mimic collection.test.js
-*/
 describe('insert\'s error', function() {
 	it('should handle single insert', function(done) {
 		users
@@ -16,16 +13,11 @@ describe('insert\'s error', function() {
 				unique: 2
 			})
 			.then(function() {
-				//console.log(arguments, 'success1');
 				return users.insert({
 					unique: 2
 				});
 			})
-			.then(function() {
-				//console.log(arguments, 'success2');
-				done('should\'t success');
-			}, function() {
-				//console.log(arguments, 'fail2');
+			.then(null, function() {
 				done();
 			});
 	});
@@ -37,11 +29,7 @@ describe('insert\'s error', function() {
 			}, {
 				unique: 3
 			}])
-			.then(function() {
-				//console.log(arguments, 'success1');
-				done('should\'t success');
-			}, function() {
-				//console.log(arguments, 'fail1');
+			.then(null, function() {
 				done();
 			});
 	});
@@ -59,7 +47,6 @@ describe('update\'s return', function() {
 			})
 			.then(function(ans) {
 				expect(ans).to.be(0);
-				//console.log(arguments, 'success1');
 				done();
 			});
 	});
@@ -69,7 +56,6 @@ describe('update\'s return', function() {
 				unique: 5
 			})
 			.then(function() {
-				//console.log(arguments, 'success1');
 				return users.update({
 					unique: 5
 				}, {
@@ -79,7 +65,6 @@ describe('update\'s return', function() {
 				});
 			})
 			.then(function(ans) {
-				//console.log(arguments, 'success2');
 				expect(ans).to.be(1);
 				done();
 			});
@@ -97,7 +82,6 @@ describe('update\'s return', function() {
 				common: 'b'
 			}])
 			.then(function() {
-				//console.log(arguments, 'success1');
 				return users.update({
 					common: 'a'
 				}, {
@@ -109,7 +93,6 @@ describe('update\'s return', function() {
 				});
 			})
 			.then(function(ans) {
-				//console.log(arguments, 'success2');
 				expect(ans).to.be(2);
 				done();
 			});
@@ -123,7 +106,8 @@ describe('update\'s error', function() {
 				unique: 9
 			}, {
 				$set: 'ninja'
-			}).catch(function(){
+			})
+			.then(null, function() {
 				done();
 			});
 	});
