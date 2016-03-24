@@ -18,8 +18,8 @@ If you encounter any problems, please [file an issue](https://github.com/ratson/
 
 ## Run Test Cases
 
-- new test `node_modules/.bin/mocha test/new_test.js`
-- all tests `node_modules/.bin/mocha`
+Execute `npm test`.
 
-## Breaking Changes
-- implements `collection.aggregate(stages, [options], fn)` 
+## Bouns
+
+Thanks to [@heartnetkung](https://github.com/heartnetkung), `monkii` has additional API `collection.aggregate(stages, [options], fn)` for aggregation support.
