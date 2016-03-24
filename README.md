@@ -16,11 +16,11 @@ For documentation, please refer to [monk's README](https://github.com/Automattic
 
 If you encounter any problems, please [file an issue](https://github.com/ratson/monkii/issues) along with a detailed description.
 
-## Run new Test Case
+## Run Test Cases
 
-`node_modules/.bin/mocha test/new_test.js`
-`node_modules/.bin/mocha`
+- new test `node_modules/.bin/mocha test/new_test.js`
+- all tests `node_modules/.bin/mocha`
 
 ## Breaking Changes
-- `collection.update` and `collection.remove` now return the number of documents affected by the operation.
+- `collection.update()` and `collection.remove()` now return the number of documents affected by the operation.
 - implements `collection.aggregate(stages, [options], fn)` 
