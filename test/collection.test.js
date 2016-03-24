@@ -3,13 +3,17 @@
 var monk = require('../lib/monk')
   , immediately = global.setImmediate || process.nextTick
   , db
-  , users, indexes;
+  , users, indexes, uniqueUsers;
 
 describe('collection', function () {
   before(function () {
     db = monk('127.0.0.1/monk');
     users = db.get('users-' + Date.now());
     indexes = db.get('indexes-' + Date.now());
+    uniqueUsers = db.get('unique_users');
+    uniqueUsers.index('unique', {
+      unique: true
+    });
   });
 
   describe('casting method', function () {
@@ -540,10 +544,117 @@ describe('collection', function () {
     });
   });
 
+  describe('changes from mongo updates',function(){
+    describe('insert\'s error', function() {
+      it('should handle single insert', function(done) {
+        uniqueUsers.insert({ unique: 2 }).then(function() {
+          return uniqueUsers.insert({ unique: 2 });
+        }).then(null, function() {
+          done();
+        });
+      });
+
+      it('should handle array case', function(done) {
+        uniqueUsers.insert([{ unique: 3 }, { unique: 3 }]).then(null, function() {
+          done();
+        });
+      });
+    });
+
+    describe('update\'s return', function() {
+      it('should be 0 for zero modification', function(done) {
+        uniqueUsers.update({ unique: 4 }, { $set: { unique: 4.5 }}).then(function(ans) {
+          expect(ans).to.be(0);
+          done();
+        });
+      });
+
+      it('should be 1 for single modification', function(done) {
+        uniqueUsers.insert({ unique: 5 }).then(function() {
+          return uniqueUsers.update({ unique: 5 }, { $set: { unique: 5.5 } });
+        }).then(function(ans) {
+          expect(ans).to.be(1);
+          done();
+        });
+      });
+
+      it('should be n for multiple modification', function(done) {
+        uniqueUsers.insert([{ unique: 6, common: 'a' }, { unique: 7, common: 'a' }, { unique: 8, common: 'b' }]).then(function() {
+          return uniqueUsers.update({ common: 'a' }, { $set: { common: 'c' }}, { multi: true });
+        }).then(function(ans) {
+          expect(ans).to.be(2);
+          done();
+        });
+      });
+    });
+
+    describe('update\'s error', function() {
+      it('should fail properly', function(done) {
+        uniqueUsers.update({ unique: 9 }, { $set: 'ninja' }).then(null, function() {
+          done();
+        });
+      });
+    });
+
+    describe('remove\'s return', function() {
+      it('should be 0 for zero modification', function(done) {
+        uniqueUsers.remove({ unique: 10 }).then(function(ans) {
+          expect(ans).to.be(0);
+          done();
+        });
+      });
+
+      it('should be n otherwise', function(done) {
+        uniqueUsers.insert({ unique: 10 }).then(function() {
+          return uniqueUsers.remove({ unique: 10 });
+        }).then(function(ans) {
+          expect(ans).to.be(1);
+          done();
+        });
+      });
+    });
+
+    describe('remove\'s error', function() {
+      it('should fail properly', function(done) {
+        uniqueUsers.remove({ $or: 'ninja' }).then(null, function() {
+          done();
+        });
+      });
+    });
+
+    describe('aggregate\'s error', function() {
+      it('should fail properly', function(done) {
+        uniqueUsers.aggregate().then(null, function() {
+          done();
+        });
+      });
+    });
+
+    describe('aggregate\'s normal flow', function() {
+      it('should word in normal case', function(done) {
+        uniqueUsers.aggregate([{ $group: { _id: null, maxUnique: { $max: '$unique' }}}]).then(function(ans) {
+          expect(ans).to.be.an('array');
+          expect(ans.length).to.be(1);
+          done();
+        });
+      });
+
+      it('should word with option', function(done) {
+        uniqueUsers.aggregate([{ $group: { _id: null, maxUnique: { $max: '$unique' }}}], { allowDiskUse: true }).then(function(ans) {
+          expect(ans).to.be.an('array');
+          expect(ans.length).to.be(1);
+          done();
+        });
+      });
+    });
+  });
+
   after(function (done) {
     users.drop(function (err) {
       expect(err).to.be(null);
-      indexes.drop(done);
+      indexes.drop(function(err){
+        uniqueUsers.drop(done);
+      });
     });
   });
 });
