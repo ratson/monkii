@@ -2,7 +2,7 @@
   "name": "monkii",
   "description": "A fork of monk with recent version of mongoskin",
   "keywords": ["monk", "database", "mongo", "mongodb", "mongoskin"],
-  "version": "1.1.5",
+  "version": "1.1.6",
   "main": "lib/monk.js",
   "tags": [
     "mongodb",
@@ -20,12 +20,12 @@
     "mpromise": "0.5.5"
   },
   "peerDependencies": {
-    "mongodb": "^2.0"
+    "mongodb": "~2.0"
   },
   "devDependencies": {
     "expect.js": "0.3.x",
     "mocha": "*",
-    "mongodb": "^2.0",
+    "mongodb": "~2.0",
     "promises-aplus-tests": "2.1.x"
   },
   "license": "MIT",
