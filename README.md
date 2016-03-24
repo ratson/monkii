@@ -22,5 +22,4 @@ If you encounter any problems, please [file an issue](https://github.com/ratson/
 - all tests `node_modules/.bin/mocha`
 
 ## Breaking Changes
-- `collection.update()` and `collection.remove()` now return the number of documents affected by the operation.
 - implements `collection.aggregate(stages, [options], fn)` 
