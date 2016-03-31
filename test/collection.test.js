@@ -3,11 +3,13 @@
 var monk = require('../lib/monk')
   , immediately = global.setImmediate || process.nextTick
   , db
+  , invalidDb
   , users, indexes, uniqueUsers;
 
 describe('collection', function () {
   before(function () {
     db = monk('127.0.0.1/monk');
+    invalidDb = monk('127.0.0.404/monk');
     users = db.get('users-' + Date.now());
     indexes = db.get('indexes-' + Date.now());
     uniqueUsers = db.get('unique_users');
@@ -140,6 +142,12 @@ describe('collection', function () {
       var p = users.insert([{ a: 'b' }, { b: 'a' }], function (err, docs) {
         expect(docs).to.be.an('array');
         expect(docs.length).to.be(2);
+        done();
+      });
+    });
+
+    it('should trigger error when db can not be connected', function (done) {
+      invalidDb.get('users-' + Date.now()).insert({ a: 'b' }).then(null, function() {
         done();
       });
     });
