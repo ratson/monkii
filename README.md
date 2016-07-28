@@ -1,3 +1,9 @@
+# OBSOLETED
+
+[monk](https://github.com/Automattic/monk) is active again and added support to the latest MongoDB driver.
+
+This project is OBSOLETED in favor of the official one.
+
 # monkii
 
 This is a fork of [monk](https://github.com/Automattic/monk) with [mongoskin](https://github.com/kissjs/node-mongoskin) upgrade to v2, which use a more recent version of [mongodb](https://github.com/mongodb/node-mongodb-native).
