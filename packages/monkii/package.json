@@ -1,0 +1,15 @@
+{
+  "name": "monkii",
+  "description": "Modern friendly MongoDB API.",
+  "version": "1.2.1",
+  "dependencies": {
+    "debug": "*",
+    "mongodb": "^3.0.1",
+    "monk-middleware-cast-ids": "^0.2.1",
+    "monk-middleware-fields": "^0.2.0",
+    "monk-middleware-handle-callback": "^0.2.2",
+    "monk-middleware-options": "^0.2.1",
+    "monk-middleware-query": "^0.2.0",
+    "monk-middleware-wait-for-connection": "^0.2.0"
+  }
+}

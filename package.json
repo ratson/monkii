@@ -1,29 +1,54 @@
 {
-  "name": "monkii",
-  "description": "A fork of monk with recent version of mongoskin",
-  "keywords": ["monk", "database", "mongo", "mongodb", "mongoskin"],
-  "version": "1.2.1",
-  "main": "lib/monk.js",
-  "tags": [
-    "mongodb",
+  "private": true,
+  "scripts": {
+    "postinstall": "lerna bootstrap",
+    "test": "jest",
+    "posttest": "ava test"
+  },
+  "keywords": [
+    "monk",
+    "database",
     "mongo",
+    "mongodb",
+    "mongoskin",
     "driver"
   ],
+  "main": "lib/monk.js",
   "repository": "ratson/monkii",
   "homepage": "https://github.com/ratson/monkii",
-  "dependencies": {
-    "debug": "*",
-    "mongoskin": "~2.1.0",
-    "mpromise": "0.5.5"
+  "license": "MIT",
+  "engines": {
+    "node": ">= 8"
   },
   "devDependencies": {
-    "expect.js": "0.3.x",
-    "mocha": "*",
-    "mongodb": "^2.1",
+    "ava": "^0.24.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "eslint": "^4.14.0",
+    "eslint-config-concise": "^0.16.4",
+    "eslint-config-concise-esnext": "^0.16.4",
+    "eslint-config-concise-jest": "^0.16.4",
+    "jest": "^22.0.4",
+    "lerna": "^2.5.1",
+    "lint-staged": "^6.0.0",
+    "mongodb": "^3.0.1",
+    "monk-middleware-debug": "^0.2.0",
+    "prettier-eslint-cli": "^4.7.0",
     "promises-aplus-tests": "2.1.x"
   },
-  "license": "MIT",
-  "scripts": {
-    "test": "make test"
+  "ava": {
+    "babel": "inherit",
+    "require": [
+      "babel-register"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "@ava/stage-4",
+      "@ava/transform-test-files"
+    ],
+    "plugins": [
+      "transform-class-properties"
+    ]
   }
 }
