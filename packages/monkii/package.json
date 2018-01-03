@@ -14,5 +14,10 @@
     "monk-middleware-options": "^0.2.1",
     "monk-middleware-query": "^0.2.0",
     "monk-middleware-wait-for-connection": "^0.2.0"
-  }
+  },
+  "files": [
+    "*.js",
+    "lib",
+    "src"
+  ]
 }
