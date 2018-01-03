@@ -1,7 +1,7 @@
 {
   "name": "monkii",
   "description": "Modern friendly MongoDB API.",
-  "version": "1.2.1",
+  "version": "2.0.0-0",
   "dependencies": {
     "debug": "*",
     "mongodb": "^3.0.1",
