@@ -2,6 +2,9 @@
   "name": "monkii",
   "description": "Modern friendly MongoDB API.",
   "version": "2.0.0-0",
+  "scripts": {
+    "prepare": "babel src --out-dir lib"
+  },
   "dependencies": {
     "debug": "*",
     "mongodb": "^3.0.1",
