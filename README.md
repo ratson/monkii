@@ -1,14 +1,6 @@
-# OBSOLETED
-
-[monk](https://github.com/Automattic/monk) is active again and added support to the latest MongoDB driver.
-
-This project is OBSOLETED in favor of the official one.
-
 # monkii
 
-This is a fork of [monk](https://github.com/Automattic/monk) with [mongoskin](https://github.com/kissjs/node-mongoskin) upgrade to v2, which use a more recent version of [mongodb](https://github.com/mongodb/node-mongodb-native).
-
-There is a [pending pull request](https://github.com/Automattic/monk/pull/119) waiting to review, this package is for those who can't wait.
+This is a fork of [monk](https://github.com/Automattic/monk), which use a more recent version of [mongodb](https://github.com/mongodb/node-mongodb-native).
 
 ## Usage
 
@@ -25,7 +17,3 @@ If you encounter any problems, please [file an issue](https://github.com/ratson/
 ## Run Test Cases
 
 Execute `npm test`.
-
-## Bouns
-
-Thanks to [@heartnetkung](https://github.com/heartnetkung), `monkii` has additional API `collection.aggregate(stages, [options], fn)` for aggregation support.
