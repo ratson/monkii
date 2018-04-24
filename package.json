@@ -1,8 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "test": "jest",
-    "posttest": "ava test"
+    "test": "ava"
   },
   "keywords": [
     "monk",
@@ -27,10 +26,8 @@
     "eslint": "^4.19.1",
     "eslint-config-concise": "^0.23.0",
     "eslint-config-concise-esnext": "^0.22.0",
-    "eslint-config-concise-jest": "^0.23.0",
     "execa": "^0.10.0",
     "globby": "^8.0.1",
-    "jest": "^22.4.3",
     "lerna": "^2.10.2",
     "lint-staged": "^7.0.4",
     "mongodb": "^3.0.7",

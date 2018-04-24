@@ -1,15 +1,16 @@
-'use strict'
+import execa from 'execa'
+import globby from 'globby'
 
-const execa = require('execa')
-const globby = require('globby')
+import test from 'ava'
 
-const monkii = require('..')
+import monkii from '..'
 
-test('export factory function', () => {
-  expect(monkii).toBeInstanceOf(Function)
+test('export factory function', t => {
+  t.true(typeof monkii === 'function')
 })
 
-test('run by node', async () => {
+test('run by node', async t => {
   const files = await globby('../lib/*.js', { cwd: __dirname, absolute: true })
   await Promise.all(files.map(file => execa('node', [file])))
+  t.pass()
 })
