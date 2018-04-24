@@ -114,7 +114,7 @@ class Manager extends EventEmitter {
     this.oid = this.id
   }
 
-  open = (uri, opts, fn) => {
+  open(uri, opts, fn) {
     MongoClient.connect(uri, opts, (err, client) => {
       const db = client && client.db(this._dbName)
       if (err || !db) {
@@ -147,7 +147,7 @@ class Manager extends EventEmitter {
     })
   }
 
-  executeWhenOpened = () => {
+  executeWhenOpened() {
     switch (this._state) {
       case STATE.OPEN:
         return Promise.resolve(this._db)
@@ -164,18 +164,20 @@ class Manager extends EventEmitter {
     }
   }
 
-  then = fn =>
-    new Promise((resolve, reject) => {
+  then(fn) {
+    return new Promise((resolve, reject) => {
       this.once('open', resolve)
       this.once('error-opening', reject)
     }).then(fn.bind(null, this))
+  }
 
-  catch = fn =>
-    new Promise(resolve => {
+  catch(fn) {
+    return new Promise(resolve => {
       this.once('error-opening', resolve)
     }).then(fn.bind(null))
+  }
 
-  close = (force, fn) => {
+  close(force, fn) {
     if (typeof force === 'function') {
       /* eslint-disable no-param-reassign */
       fn = force
@@ -214,7 +216,7 @@ class Manager extends EventEmitter {
     }
   }
 
-  listCollections = async query => {
+  async listCollections(query) {
     const db = await this.executeWhenOpened()
     return db
       .listCollections(query)
@@ -222,7 +224,7 @@ class Manager extends EventEmitter {
       .then(x => x.map(({ name }) => this.get(name)))
   }
 
-  get = (name, options) => {
+  get(name, options) {
     if ((options || {}).cache === false || !this.collections[name]) {
       // eslint-disable-next-line no-param-reassign
       delete (options || {}).cache
@@ -236,7 +238,7 @@ class Manager extends EventEmitter {
     return this.collections[name]
   }
 
-  create = (name, creationOptions, options) => {
+  create(name, creationOptions, options) {
     this.executeWhenOpened()
       .then(db => {
         db.createCollection(name, creationOptions)
@@ -248,11 +250,11 @@ class Manager extends EventEmitter {
     return this.get(name, options)
   }
 
-  setDefaultCollectionOptions = options => {
+  setDefaultCollectionOptions(options) {
     this._collectionOptions = options
   }
 
-  addMiddleware = middleware => {
+  addMiddleware(middleware) {
     if (!this._collectionOptions) {
       this._collectionOptions = {}
     }
@@ -263,10 +265,14 @@ class Manager extends EventEmitter {
   }
 
   // eslint-disable-next-line global-require
-  id = str => require('./helpers').id(str)
+  id(str) {
+    return require('./helpers').id(str)
+  }
 
   // eslint-disable-next-line global-require
-  cast = obj => require('./helpers').cast(obj)
+  cast(obj) {
+    return require('./helpers').cast(obj)
+  }
 }
 
 module.exports = Manager

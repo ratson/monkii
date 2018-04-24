@@ -3,29 +3,12 @@
   "scripts": {
     "test": "ava"
   },
-  "keywords": [
-    "monk",
-    "database",
-    "mongo",
-    "mongodb",
-    "mongoskin",
-    "driver"
-  ],
-  "main": "lib/monk.js",
-  "repository": "ratson/monkii",
-  "homepage": "https://github.com/ratson/monkii",
-  "license": "MIT",
-  "engines": {
-    "node": ">= 8"
-  },
   "devDependencies": {
-    "ava": "^0.25.0",
-    "babel-cli": "^6.26.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-register": "^6.26.0",
+    "ava": "^1.0.0-beta.4",
     "eslint": "^4.19.1",
     "eslint-config-concise": "^0.23.0",
     "eslint-config-concise-esnext": "^0.22.0",
+    "esm": "^3.0.25",
     "execa": "^0.10.0",
     "globby": "^8.0.1",
     "lerna": "^2.10.2",
@@ -36,19 +19,18 @@
     "promises-aplus-tests": "2.1.x"
   },
   "ava": {
-    "babel": "inherit",
+    "babel": false,
     "require": [
-      "babel-register"
+      "esm"
     ]
   },
-  "babel": {
-    "presets": [
-      "@ava/stage-4",
-      "@ava/transform-test-files"
-    ],
-    "plugins": [
-      "transform-class-properties"
+  "eslintConfig": {
+    "extends": [
+      "concise",
+      "concise-esnext"
     ]
   },
-  "workspaces": ["packages/*"]
+  "workspaces": [
+    "packages/*"
+  ]
 }

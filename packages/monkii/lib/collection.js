@@ -31,7 +31,7 @@ class Collection {
     this._dispatch = applyMiddlewares(this.middlewares)(manager, this)
   }
 
-  aggregate = (stages, opts, fn) => {
+  aggregate(stages, opts, fn) {
     if (typeof opts === 'function') {
       /* eslint-disable no-param-reassign */
       fn = opts
@@ -44,7 +44,7 @@ class Collection {
     )({ options: opts, stages, callback: fn }, 'aggregate')
   }
 
-  bulkWrite = (operations, opts, fn) => {
+  bulkWrite(operations, opts, fn) {
     if (typeof opts === 'function') {
       /* eslint-disable no-param-reassign */
       fn = opts
@@ -57,7 +57,7 @@ class Collection {
     )({ options: opts, operations, callback: fn }, 'bulkWrite')
   }
 
-  count = (query, opts, fn) => {
+  count(query, opts, fn) {
     if (typeof opts === 'function') {
       /* eslint-disable no-param-reassign */
       fn = opts
@@ -71,7 +71,7 @@ class Collection {
     )
   }
 
-  createIndex = (fields, opts, fn) => {
+  createIndex(fields, opts, fn) {
     if (typeof opts === 'function') {
       /* eslint-disable no-param-reassign */
       fn = opts
@@ -84,7 +84,7 @@ class Collection {
     )({ options: opts, fields, callback: fn }, 'createIndex')
   }
 
-  distinct = (field, query, opts, fn) => {
+  distinct(field, query, opts, fn) {
     /* eslint-disable no-param-reassign */
     if (typeof opts === 'function') {
       fn = opts
@@ -110,8 +110,8 @@ class Collection {
     )
   }
 
-  drop = fn =>
-    this._dispatch(args =>
+  drop(fn) {
+    return this._dispatch(args =>
       args.col.drop().catch(err => {
         if (err && err.message === 'ns not found') {
           return 'ns not found'
@@ -119,8 +119,9 @@ class Collection {
         throw err
       }),
     )({ callback: fn }, 'drop')
+  }
 
-  dropIndex = (fields, opts, fn) => {
+  dropIndex(fields, opts, fn) {
     if (typeof opts === 'function') {
       /* eslint-disable no-param-reassign */
       fn = opts
@@ -133,13 +134,14 @@ class Collection {
     )({ options: opts, fields, callback: fn }, 'dropIndex')
   }
 
-  dropIndexes = fn =>
+  dropIndexes(fn) {
     this._dispatch(args => args.col.dropIndexes())(
       { callback: fn },
       'dropIndexes',
     )
+  }
 
-  ensureIndex = (fields, opts, fn) => {
+  ensureIndex(fields, opts, fn) {
     if (typeof opts === 'function') {
       /* eslint-disable no-param-reassign */
       fn = opts
@@ -157,7 +159,7 @@ class Collection {
   }
 
   /* eslint-disable no-param-reassign */
-  find = (query, opts, fn) => {
+  find(query, opts, fn) {
     if (typeof opts === 'function') {
       fn = opts
       opts = {}
@@ -244,7 +246,7 @@ class Collection {
     return promise
   }
 
-  findOne = (query, opts, fn) => {
+  findOne(query, opts, fn) {
     if (typeof opts === 'function') {
       fn = opts
       opts = {}
@@ -259,7 +261,7 @@ class Collection {
     )({ options: opts, query, callback: fn }, 'findOne')
   }
 
-  findOneAndDelete = (query, opts, fn) => {
+  findOneAndDelete(query, opts, fn) {
     if (typeof opts === 'function') {
       fn = opts
       opts = {}
@@ -277,7 +279,7 @@ class Collection {
     )({ options: opts, query, callback: fn }, 'findOneAndDelete')
   }
 
-  findOneAndUpdate = (query, update, opts, fn) => {
+  findOneAndUpdate(query, update, opts, fn) {
     if (typeof opts === 'function') {
       fn = opts
       opts = {}
@@ -308,8 +310,8 @@ class Collection {
     )
   }
 
-  geoHaystackSearch = (x, y, opts, fn) =>
-    this._dispatch(args =>
+  geoHaystackSearch(x, y, opts, fn) {
+    return this._dispatch(args =>
       args.col
         .geoHaystackSearch(args.x, args.y, args.options)
         .then(doc => (doc && doc.results) || doc),
@@ -322,8 +324,9 @@ class Collection {
       },
       'geoHaystackSearch',
     )
+  }
 
-  geoNear = (x, y, opts, fn) => {
+  geoNear(x, y, opts, fn) {
     if (typeof opts === 'function') {
       fn = opts
       opts = {}
@@ -344,7 +347,7 @@ class Collection {
     )
   }
 
-  group = (keys, condition, initial, reduce, finalize, command, opts, fn) => {
+  group(keys, condition, initial, reduce, finalize, command, opts, fn) {
     if (typeof opts === 'function') {
       fn = opts
       opts = {}
@@ -374,13 +377,14 @@ class Collection {
     )
   }
 
-  indexes = fn =>
-    this._dispatch(args => args.col.indexInformation())(
+  indexes(fn) {
+    return this._dispatch(args => args.col.indexInformation())(
       { callback: fn },
       'indexes',
     )
+  }
 
-  insert = (data, opts, fn) => {
+  insert(data, opts, fn) {
     if (typeof opts === 'function') {
       fn = opts
       opts = {}
@@ -403,8 +407,8 @@ class Collection {
     })({ data, options: opts, callback: fn }, 'insert')
   }
 
-  mapReduce = (map, reduce, opts, fn) =>
-    this._dispatch(args =>
+  mapReduce(map, reduce, opts, fn) {
+    return this._dispatch(args =>
       args.col.mapReduce(args.map, args.reduce, args.options),
     )(
       {
@@ -415,8 +419,9 @@ class Collection {
       },
       'mapReduce',
     )
+  }
 
-  remove = (query, opts, fn) => {
+  remove(query, opts, fn) {
     if (typeof opts === 'function') {
       fn = opts
       opts = {}
@@ -436,7 +441,7 @@ class Collection {
     )
   }
 
-  stats = (opts, fn) => {
+  stats(opts, fn) {
     if (typeof opts === 'function') {
       fn = opts
       opts = {}
@@ -450,7 +455,7 @@ class Collection {
     )
   }
 
-  update = (query, update, opts, fn) => {
+  update(query, update, opts, fn) {
     if (typeof opts === 'function') {
       fn = opts
       opts = {}

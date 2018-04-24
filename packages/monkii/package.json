@@ -2,9 +2,7 @@
   "name": "monkii",
   "description": "Modern friendly MongoDB API.",
   "version": "2.0.0-2",
-  "scripts": {
-    "prepare": "babel src --out-dir lib"
-  },
+  "main": "lib/monk.js",
   "dependencies": {
     "debug": "*",
     "mongodb": "^3.0.7",
@@ -15,9 +13,22 @@
     "monk-middleware-query": "^0.2.0",
     "monk-middleware-wait-for-connection": "^0.2.0"
   },
+  "engines": {
+    "node": ">= 9"
+  },
   "files": [
     "*.js",
-    "lib",
-    "src"
-  ]
+    "lib"
+  ],
+  "keywords": [
+    "monk",
+    "database",
+    "mongo",
+    "mongodb",
+    "mongoskin",
+    "driver"
+  ],
+  "license": "MIT",
+  "repository": "ratson/monkii",
+  "homepage": "https://github.com/ratson/monkii"
 }
