@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "debug": "*",
-    "mongodb": "^3.0.1",
+    "mongodb": "^3.0.7",
     "monk-middleware-cast-ids": "^0.2.1",
     "monk-middleware-fields": "^0.2.0",
     "monk-middleware-handle-callback": "^0.2.2",

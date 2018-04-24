@@ -1,7 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "postinstall": "lerna bootstrap",
     "test": "jest",
     "posttest": "ava test"
   },
@@ -21,22 +20,22 @@
     "node": ">= 8"
   },
   "devDependencies": {
-    "ava": "^0.24.0",
+    "ava": "^0.25.0",
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-register": "^6.26.0",
-    "eslint": "^4.14.0",
-    "eslint-config-concise": "^0.16.4",
-    "eslint-config-concise-esnext": "^0.16.4",
-    "eslint-config-concise-jest": "^0.16.4",
-    "execa": "^0.8.0",
-    "globby": "^7.1.1",
-    "jest": "^22.0.4",
-    "lerna": "^2.5.1",
-    "lint-staged": "^6.0.0",
-    "mongodb": "^3.0.1",
+    "eslint": "^4.19.1",
+    "eslint-config-concise": "^0.23.0",
+    "eslint-config-concise-esnext": "^0.22.0",
+    "eslint-config-concise-jest": "^0.23.0",
+    "execa": "^0.10.0",
+    "globby": "^8.0.1",
+    "jest": "^22.4.3",
+    "lerna": "^2.10.2",
+    "lint-staged": "^7.0.4",
+    "mongodb": "^3.0.7",
     "monk-middleware-debug": "^0.2.0",
-    "prettier-eslint-cli": "^4.7.0",
+    "prettier-eslint-cli": "^4.7.1",
     "promises-aplus-tests": "2.1.x"
   },
   "ava": {
@@ -53,5 +52,6 @@
     "plugins": [
       "transform-class-properties"
     ]
-  }
+  },
+  "workspaces": ["packages/*"]
 }
