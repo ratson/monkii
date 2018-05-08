@@ -1,20 +1,23 @@
 {
   "private": true,
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "precommit": "lint-staged"
   },
   "devDependencies": {
     "ava": "^1.0.0-beta.4",
     "eslint": "^4.19.1",
-    "eslint-config-concise": "^0.23.0",
-    "eslint-config-concise-esnext": "^0.22.0",
-    "esm": "^3.0.25",
+    "eslint-config-concise": "^0.24.0",
+    "eslint-config-concise-esnext": "^0.24.1",
+    "esm": "^3.0.31",
     "execa": "^0.10.0",
     "globby": "^8.0.1",
-    "lerna": "^2.10.2",
-    "lint-staged": "^7.0.4",
+    "husky": "^0.14.3",
+    "lerna": "^2.11.0",
+    "lint-staged": "^7.1.0",
     "mongodb": "^3.0.7",
     "monk-middleware-debug": "^0.2.0",
+    "preslint": "^0.23.1",
     "prettier-eslint-cli": "^4.7.1",
     "promises-aplus-tests": "2.1.x"
   },
@@ -28,6 +31,11 @@
     "extends": [
       "concise",
       "concise-esnext"
+    ]
+  },
+  "lint-staged": {
+    "*.js": [
+      "preslint --fix --git"
     ]
   },
   "workspaces": [

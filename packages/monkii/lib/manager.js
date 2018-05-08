@@ -204,7 +204,7 @@ class Manager extends EventEmitter {
         return Promise.resolve()
       case STATE.OPENING:
         return new Promise(resolve => {
-          this._queue.push(db => {
+          this._queue.push(() => {
             close(resolve, this._dbClient)
           })
         })
@@ -264,13 +264,15 @@ class Manager extends EventEmitter {
     this._collectionOptions.middlewares.push(middleware)
   }
 
-  // eslint-disable-next-line global-require
+  // eslint-disable-next-line class-methods-use-this
   id(str) {
+    // eslint-disable-next-line global-require
     return require('./helpers').id(str)
   }
 
-  // eslint-disable-next-line global-require
+  // eslint-disable-next-line class-methods-use-this
   cast(obj) {
+    // eslint-disable-next-line global-require
     return require('./helpers').cast(obj)
   }
 }

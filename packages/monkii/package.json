@@ -2,7 +2,6 @@
   "name": "monkii",
   "description": "Modern friendly MongoDB API.",
   "version": "2.0.0-2",
-  "main": "lib/monk.js",
   "dependencies": {
     "debug": "*",
     "mongodb": "^3.0.7",
